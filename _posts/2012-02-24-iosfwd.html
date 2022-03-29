@@ -1,0 +1,11 @@
+---
+layout: post
+title: iosfwd
+date: 2012-02-24
+category: cpp
+tags: [cpp, programacion, iostream]
+---
+
+<div class='post'>
+La librería estándar de C++ ofrece un archivo de cabecera de <a href="https://plus.google.com/u/0/b/111182086636270314265/111182086636270314265/posts/hk7tonfPkFj">forward declarations</a> de las clases de entrada y salida a flujos de bytes (iostreams):<br /><pre class="prettyprint">#include &lt;iosfwd&gt;<br /></pre>De esta forma podemos utilizar los tipos ostream, istream, etc. sin necesidad de traer la definición de todas las clases de entrada y salida. Generalmente deberíamos utilizar el <a href="http://stdcxx.apache.org/doc/stdlibref/iosfwd-h.html">&lt;iosfwd&gt;</a> en nuestro .h cuando no hagamos un mayor uso que sólo referenciarlas. Un ejemplo:<br /><pre class="prettyprint">﻿#ifndef EMPLEADO_IO_H<br />﻿#define EMPLEADO_IO_H<br /><br />#include &lt;iosfwd&gt; // forward declaration de ostream<br /><br />class Empleado;    // forward declaration de nuestro tipo<br /><br />// Aquí no necesitamos conocer el tamaño ni de Empleado,<br />// ni de ostream, podemos compilar sólo con sus forward<br />// declarations.<br />void write_empleado_en_formato_binario(const Empleado&amp;, ostream&amp;);<br /><br />#endif</pre><b>Regla:</b> Siempre intenta usar las <i>forward declarations</i> antes que incluir los archivos de cabecera que definen las clases, los cuales suelen mostrar detalles de implementación que son propensos a cambiar. Siguiendo esta regla mejoraremos el tiempo de compilación y la cantidad de archivos a compilar al realizar una modificación en un .h.<p>Para más información, ver la sección 27.3 Forward declarations [iostream.forward] del <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2011/n3242.pdf">último borrador público</a> del estándar de C++
+</div>

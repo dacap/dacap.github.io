@@ -1,0 +1,11 @@
+---
+layout: post
+title: Código C++ moderno
+date: 2011-09-21
+category: cpp
+tags: [cpp, programacion, cpp11]
+---
+
+<div class='post'>
+Una excelente charla de Herb Sutter&nbsp;(en inglés)&nbsp;introduciendo algunas de las novedades del nuevo&nbsp;estándar&nbsp;C++11 y sobre cómo escribir código en C++ aprovechando todo el conocimiento acumulado en estos años (si nunca leíste <a href="http://www.gotw.ca/publications/c++cs.htm">C++ Coding Standards</a> de Herb Sutter y Andrei Alexandrescu, compralo):<br /><blockquote><a href="http://channel9.msdn.com/Events/BUILD/BUILD2011/TOOL-835T">http://channel9.msdn.com/Events/BUILD/BUILD2011/TOOL-835T</a></blockquote>Los puntos tratados que no podes dejar pasar por alto:<br /><ul><li>El nuevo significado de la palabra <a href="http://en.wikipedia.org/wiki/C%2B%2B11#Type_inference">auto</a>&nbsp;para inferir tipos automáticamente.</li><li>La nueva sintaxis de&nbsp;<a href="http://en.wikipedia.org/wiki/C%2B%2B11#Lambda_functions_and_expressions">lambdas</a>&nbsp;para definir functors en línea y usarlos en algoritmos estándares (ej: for_each()).</li><li><i>Exception safety</i> y <i>heap lifetime</i> con&nbsp;<a href="http://en.wikipedia.org/wiki/C%2B%2B11#General-purpose_smart_pointers">smart pointers</a>, los cuales ya tenemos varios posts en este mismo blog sobre el concepto de smart pointers y <a href="http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization">RAII</a>.</li><li>Nuevos contenedores de tipo <a href="http://en.wikipedia.org/wiki/C%2B%2B11#Hash_tables">hash table</a>.</li><li><a href="http://en.wikipedia.org/wiki/C%2B%2B11#Rvalue_references_and_move_constructors">Move semantics</a>&nbsp;que evita la creación y destrucción de objetos temporales innecesarias (ej: al retornar por valor).</li><li>Varios pequeños nuevos coding standards de C++11: funciones begin()/end(), <i>override</i> explícito, idioma pimpl con unique_ptr&lt;&gt;, etc.</li></ul>En futuros posts voy a dedicar algo de tiempo en introducir estos temas y explicar por qué nacieron cada una de estas modificaciones en el nuevo estándar de C++.
+</div>

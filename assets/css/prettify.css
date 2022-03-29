@@ -1,0 +1,11 @@
+.pln { color: #c7254e }
+.com { color: #7ac87a }
+ol.linenums { margin-top: 0; margin-bottom: 0 }
+li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L5,
+li.L6,
+li.L7,
+li.L8 { list-style-type: none }

@@ -1,0 +1,18 @@
+---
+layout: page
+title : Blog
+group: navigation
+permalink: /blog/
+schema: Blog
+---
+
+<div style="margin-bottom:16px;">
+  <a style="margin-right:16px;" href="/atom.xml">
+	<img src="/images/feed.png" alt="Atom" style="position:relative;bottom:2px;" /> Feed
+  </a>
+  | <a style="margin:0px 16px;" href="/categories/">Categories</a>
+  | <a style="margin:0px 16px;" href="/tags/">Tags</a>
+</div>
+
+{% assign posts_collate = site.posts %}
+{% include posts_collate %}
