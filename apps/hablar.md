@@ -8,5 +8,5 @@ permalink: /apps/hablar/
 
 Este programa reproduce texto en español en una forma robótica y monótona.
 
-{% include download file="http://files.davidcapello.com/v1/Hablar_v2-0.zip" desc="Descargar versión 2.0 para Windows" %}
-{% include download file="http://files.davidcapello.com/v1/Hablar_v2-0-src.zip" desc="Descargar código fuente" %}
+{% include download file="Hablar_v2-0.zip" desc="Descargar versión 2.0 para Windows" %}
+{% include download file="Hablar_v2-0-src.zip" desc="Descargar código fuente" %}

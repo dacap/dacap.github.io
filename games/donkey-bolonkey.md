@@ -19,6 +19,6 @@ it is several times gorier.
 **21 Jan 2008**: Now the game can be played in a window
 with pixels of double size. Also an icon was added.
 
- * [Download Windows version](http://files.davidcapello.com/v1/dkbk-win.zip)
- * [Download GNU/Linux version (ELF i386)](http://files.davidcapello.com/v1/dkbk-uni.tar.gz)
- * [Download source code](http://files.davidcapello.com/v1/dkbk-src.zip) ([git repository](http://github.com/dacap/donkeybolonkey/))
+{% include download file="dkbk-win.zip" desc="Download Windows version" %}
+{% include download file="dkbk-uni.tar.gz" desc="Download GNU/Linux version (ELF i386)" %}
+{% include download file="https://github.com/dacap/donkeybolonkey/" desc="Source Code" %}

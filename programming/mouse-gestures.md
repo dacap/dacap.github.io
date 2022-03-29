@@ -10,4 +10,4 @@ One of the few useful things that I made in university: How to
 recognize mouse gestures (stroke gestures) using a neural network
 [MLP](http://www.google.com.ar/search?q=Multilayer+Perceptron).
 
- * [Download Windows version + source code](http://files.davidcapello.com/v1/MouseGestures.zip)
+{% include download file="MouseGestures.zip" desc="Download Windows version + source code" %}

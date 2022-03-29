@@ -13,4 +13,4 @@ From [Wikipedia](http://en.wikipedia.org/wiki/Sudoku):
 > (also called "boxes", "blocks", "regions", or "sub-squares")
 > contains all of the digits from 1 to 9.
 
-{% include download file="http://files.davidcapello.com/v1/Sudoku.exe" desc="Download for Windows" %}
+{% include download file="Sudoku.exe" desc="Download for Windows" %}

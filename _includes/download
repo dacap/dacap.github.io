@@ -1,8 +1,14 @@
+{% if include.file contains "http" %}
+  {% assign url = include.file %}
+{% else %}
+  {% capture url %}{{ site.files_url }}/{{ include.file }}{% endcapture %}
+{% endif %}
 <p>
- <a href="{{ include.file }}" class="btn btn-primary">
+ <a href="{{ url }}" class="btn btn-primary">
   <span class="glyphicon glyphicon-circle-arrow-down">
   </span>&nbsp;&nbsp;<span>
     {{ include.desc }}
   </span>
  </a>
 </p>
+{% assign url = nil %}

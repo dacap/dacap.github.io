@@ -21,4 +21,5 @@ are going to heaven.
 
 **19 Dec 2008**: Fixed a lot of bugs.
 
-* [Download Windows version](http://files.davidcapello.com/v1/defnot.zip) ([git repository](http://github.com/dacap/defenderofnothing/))
+{% include download file="defnot.zip" desc="Download Windows version" %}
+{% include download file="https://github.com/dacap/defenderofnothing/" desc="Source Code" %}

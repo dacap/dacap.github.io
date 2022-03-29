@@ -6,7 +6,7 @@ permalink: /apps/translate2/
 
 Un programa para Windows que traduce palabras de inglés al español y vice-versa.
 
-{% include download file="http://files.davidcapello.com/v1/Translate2-r2.0.zip" desc="Descargar versión para Windows" %}
+{% include download file="Translate2-r2.0.zip" desc="Descargar versión para Windows" %}
 
 ## Acerca de I2E
 

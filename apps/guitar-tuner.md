@@ -9,4 +9,4 @@ permalink: /apps/guitar-tuner/
 Guitar Tuner (aka GuitarTM) is a portable program to tune guitars. It
 includes a metronome.
 
-{% include download file="http://files.davidcapello.com/v1/GuitarTM-Setup.exe" desc="Download version 1.0 for Windows" %}
+{% include download file="GuitarTM-Setup.exe" desc="Download version 1.0 for Windows" %}

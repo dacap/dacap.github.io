@@ -14,6 +14,7 @@ author:
   twitter: davidcapello
 
 production_url: https://davidcapello.com
+files_url: https://github.com/dacap/dacap.github.io/releases/download/files
 archive_path: /blog/
 categories_path: /categories/
 tags_path: /tags/
