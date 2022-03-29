@@ -1,0 +1,11 @@
+---
+layout: post
+title: Clases que "desaparecen" luego de compilar
+date: 2009-10-17
+category: cpp
+tags: [cpp, programacion, optimizacion, abstraccion, clases]
+---
+
+<div class='post'>
+La magia de C++ es que, una vez compilado el código, algunas clases pueden desaparecer por completo (principalmente las que se usan en <a href="http://en.wikipedia.org/wiki/Call_stack">stack</a>). O sea, aunque las clases abstraen al programador de los detalles de implementación, al final, el código termina siendo tan óptimo como si la clase no fuera utilizada en un principio.<br /><br />Un ejemplo. Teniendo la siguiente clase Acumulador:<br /><pre class="prettyprint">#include &lt;cstdio&gt;<br /><br />class Acumulador {<br />  int v;<br />public:<br />  Acumulador()         { v = 0;                   }<br />  ~Acumulador()        { std::printf("%d\n", v);  }<br />  void acumular(int x) { v += x;                  }<br />};<br /></pre>Un código como el siguiente:<br /><pre class="prettyprint">{<br />  Acumulador acum;<br />  acum.acumular(2);<br />  acum.acumular(4);<br />  acum.acumular(10);<br />}<br /></pre>Al compilarlo (optimizándolo), el código equivale a exactamente esto:<br /><pre class="prettyprint">{<br />  int v = 0;<br />  v += 2;<br />  v += 4;<br />  v += 10;<br />  std::printf("%d\n", v);<br />}<br /></pre>La clase Acumulador ya no existe. Obtenemos el código más óptimo posible: sin llamadas a la función "acumular", ni ningún byte extra de memoria (Acumulador ocupa lo mismo de memoria que ocupa un "int").<br /><br />Este ejemplo no ayuda a ver grandes ventajas, pero si el constructor y el destructor hacen tareas complicadas, y las funciones miembros también, el resultado puede llevarnos a dos puntos:<br /><ul><li>Nos abstrae de la complejidad de la implementación (e.j. <em>para qué quiero saber cómo se acumula si sólo quiero acumular</em>)<br /><li>Obtenemos código tan óptimo como si no hubiéramos usado la abstracción (e.j. <em>las operaciones se acercan al hardware tanto como sea posible</em>).<br /></ul>
+</div>

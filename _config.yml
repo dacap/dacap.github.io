@@ -1,0 +1,19 @@
+permalink: /blog/:categories/:title/
+relative_permalinks: false
+
+exclude: []
+include: []
+safe: false
+pygments: true
+
+title: davidcapello.com
+author:
+  name: David Capello
+  email: davidcapello@gmail.com
+  github: dacap
+  twitter: davidcapello
+
+production_url: http://davidcapello.com
+archive_path: /blog/
+categories_path: /categories/
+tags_path: /tags/

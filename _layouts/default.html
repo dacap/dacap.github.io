@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html{% if page.schema != null %} itemscope itemtype="http://schema.org/{{ page.schema }}"{% endif %}>
+<head>
+  <meta charset="utf-8">
+  <title>{% if page.header != null %}{{ page.header }}{% else %}{{ page.title }}{% endif %} - {{ site.title }}</title>
+  {% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
+  <meta name="author" content="{{ site.author.name }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% if page.schema_image != null %}
+  <meta property="og:image" content="{{ page.schema_image }}"/>
+  <meta itemprop="image" content="{{ page.schema_image }}">
+  {% else  %}
+  <meta property="og:image" content="/images/avatar.png"/>
+  {% if page.schema != null %}<meta itemprop="image" content="/images/avatar.png">{% endif  %}
+  {% endif  %}
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="../../assets/js/html5shiv.js"></script>
+    <script src="../../assets/js/respond.min.js"></script>
+  <![endif]-->
+  {% capture canonical %}{{ site.url }}{% if site.permalink contains '.html' %}{{ page.url }}{% else %}{{ page.url | remove:'index.html' | strip_slash }}{% endif %}{% endcapture %}
+  <link rel="canonical" href="{{ site.production_url }}{{ canonical }}">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="/assets/bootstrap/css/bootstrap.min.css?v=1" rel="stylesheet">
+  <link href="/assets/css/me.css?v=7" rel="stylesheet" type="text/css" media="all">
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="alternate" type="application/atom+xml" title="David Capello's Blog" href="/atom.xml" />
+  <link href="https://twitter.com/davidcapello" rel="publisher"/>
+  {% if page.prettify %}
+  <link href="/assets/css/annotations.css" rel="stylesheet" type="text/css" media="all">
+  <link href="/assets/css/prettify.css" rel="stylesheet" type="text/css" media="all">
+  {% endif %}
+  {% include google_analytics %}
+</head>
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a id="home" class="navbar-brand" href="/" title="{{ site.title }}">
+          <i id="home-icon"></i>
+        </a>
+      </div>
+      <div class="collapse navbar-collapse" id="main-menu">
+        <ul class="nav navbar-nav">
+            {% assign pages_list = site.pages %}
+            {% assign group = 'navigation' %}
+            {% include pages_list %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="content">
+      {{ content }}
+    </div>
+  </div>
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <p>&copy; 2001&mdash;2022 <a href="/contact/">{{ site.author.name }}</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/bootstrap/js/bootstrap.min.js?v=1"></script>
+<script src="/assets/js/me.js?v=3"></script>
+{% if page.prettify %}
+<script src="/assets/js/prettify.js"></script>
+<script src="/assets/js/annotations.js"></script>
+<script type="text/javascript">
+$(function() {
+  $("pre code").parent().addClass("prettyprint {{ page.prettify }}");
+  PR.prettyPrint();
+  prettyAnnotations();
+});
+</script>
+{% endif %}
+</body>
+</html>

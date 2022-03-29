@@ -1,3 +1,8 @@
 Thumbs.db
 .DS_Store
 !.gitkeep
+_site/*
+_drafts/*
+_demos/*
+_cpp/*
+.jekyll-cache

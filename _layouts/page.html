@@ -1,0 +1,14 @@
+---
+layout: default
+---
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h1>{% if page.header != null %}{{ page.header }}{% else %}{{ page.title }}{% endif %} <small>{{ page.tagline }}</small></h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    {{ content }}
+  </div>
+</div>

@@ -1,0 +1,560 @@
+---
+layout: default
+title: "Keyboard Layout"
+permalink: /programming/keyboard-layout/
+---
+
+<style type="text/css">
+body {
+ line-height: 12pt;
+}
+.keyboard {
+ margin-top:32px;
+ margin-bottom:16px;
+}
+table.keyboard-row {
+ margin: none;
+ padding: none;
+ border: none;
+ border-spacing: 1px;
+}
+table.keyboard-row tr {
+ vertical-align: top;
+}
+table.keyboard-row tr td {
+ width: 80px;
+ height: 80px;
+}
+.ikey, .jkey, .kkey, .lkey {
+ background-color:#aaddee;
+ background-color:#ff9060;
+}
+.ikey {
+ -webkit-border-radius: 8px 8px 0px 0px;
+ -moz-border-radius: 8px 8px 0px 0px;
+ border-radius: 8px 8px 0px 0px;
+}
+.jkey {
+ -webkit-border-radius: 8px 0px 0px 8px;
+ -moz-border-radius: 8px 0px 0px 8px;
+ border-radius: 8px 0px 0px 8px;
+}
+.lkey {
+ -webkit-border-radius: 0px 8px 8px 0px;
+ -moz-border-radius: 0px 8px 8px 0px;
+ border-radius: 0px 8px 8px 0px;
+}
+.key {
+ position: relative;
+ left: 5px;
+ top: 5px;
+ background-color: #fff;
+ border: 1px solid #bbb;
+ border-bottom: 4px solid #bbb;
+ width:70px;
+ height:70px;
+ margin:0px;
+ -webkit-border-radius: 8px;
+ -moz-border-radius: 8px;
+ border-radius: 8px;
+ -webkit-box-shadow: 0 1px 0 #777;
+ -moz-box-shadow: 0 1px 0 #777;
+ box-shadow: 0 1px 0 #777;
+}
+.key-spacebar {
+ width:720px;
+}
+.label {
+ color:#444;
+ font-family:consolas, courier;
+ font-size:18pt;
+ font-weight:bold;
+}
+.alt {
+ font-size: 10pt;
+ border:1px solid #eebb88;
+ background-color:#eeddaa;
+ margin-bottom: 1px;
+}
+.alt-shift {
+ font-size: 10pt;
+ border:1px solid #ffccaa;
+ background-color:#ffeecc;
+ margin-bottom: 1px;
+}
+.alt-ctrl {
+ font-size: 10pt;
+ border:1px solid #ffddbb;
+ background-color:#ffffdd;
+ margin-bottom: 1px;
+}
+table.bindings-mods {
+ border:none;
+}
+table.bindings-ref {
+ font-size: 12pt;
+ border: none;
+ margin-top: 12pt;
+ margin-bottom: 12pt;
+}
+table.bindings-ref tr {
+ vertical-align: top;
+}
+table.bindings-ref tr td {
+ font-size: 12pt;
+}
+.moves-sec {
+ font-weight: bold;
+}
+.key-spacebar .alt-shift,
+.key-spacebar .alt,
+.key-spacebar .alt-ctrl {
+ float:left;
+ margin-left: 8px;
+ padding-left: 4px;
+ padding-right: 4px;
+}
+</style>
+<script type="text/javascript" src="/assets/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="/assets/jquery.tooltip.pack.js"></script>
+<link rel="stylesheet" href="/assets/jquery.tooltip.css" />
+<script type="text/javascript">
+var layouts = new Array();
+layouts["us"] = "1234567890QWERTYUIOPASDFGHJKL;ZXCVBNM,./";
+layouts["sp"] = "1234567890QWERTYUIOPASDFGHJKLÑZXCVBNM,.-";
+layouts["it"] = "1234567890QWERTYUIOPASDFGHJKLÒZXCVBNM,.-";
+layouts["dv"] = "1234567890',.PYFGCRLAOEUIDHTNS;QJKXBMWVZ";
+layouts["colemak"] = "1234567890QWFPGJLUY;ARSTDHNEIOZXCVBKM,./";
+
+var ids = new Array("1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
+					"Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P",
+					"A", "S", "D", "F", "G", "H", "J", "K", "L","L2",
+					"Z", "X", "C", "V", "B", "N", "M","M2","M3","M4");
+
+function onKbdChange() {
+ var kbd = $("#kbd").attr("value");
+ for (i=0; i<layouts[kbd].length; ++i) {
+  $("#key-"+ids[i]+" .label").text(layouts[kbd].charAt(i));
+ }
+}
+
+$(document).ready(function(){
+ $("#dot-emacs").tooltip({ delay:0, track:true, fade:250 });
+
+ $("#kbd").change(onKbdChange);
+ onKbdChange();
+ for (i=0; i<ids.length; ++i) {
+    var key_div = $("#key-"+ids[i]+" .label");
+    if (key_div) {
+     var alt_shift = key_div.next("div");
+     if (alt_shift) {
+      if (alt_shift.attr("title")) {
+       alt_shift.tooltip({ delay:0, track:true, fade:250 });
+      }
+      var alt = alt_shift.next("div");
+      if (alt) {
+       if (alt.attr("title")) {
+        alt.tooltip({ delay:0, track:true, fade:250 });
+       }
+      }
+     }
+    }
+ }
+})
+</script>
+
+<div class="page-header">
+  <h1>{{ page.title }} <small>{{ page.tagline }}</small></h1>
+</div>
+
+<div class="container">
+  <div class="row">
+	<div class="span4">
+	  <p>Customized keyboard shortcuts to program using
+	  <a href="http://www.gnu.org/software/emacs/">GNU Emacs</a> and
+	  <a href="http://xahlee.org/emacs/ergonomic_emacs_keybinding.html">ergoemacs-keybindings</a>.
+	  Thanks to <a href="http://xahlee.org/">Xah Lee</a> for <a href="http://ergoemacs.org/">ErgoEmacs</a> and the feedback.</p>
+	</div>
+	<div class="span4">
+	  <p>Source code: <a href="https://github.com/dacap/ergoprog/">github.com/dacap/ergoprog/</a></p>
+	</div>
+	<div class="span2 offset2">
+	  <table border=0 class="bindings-mods">
+		<tr>
+		  <td>
+			<table border="0">
+			  <tr><td><div class="alt-shift">Alt+Shift+&lt;key&gt;</div></td></tr>
+			  <tr><td><div class="alt">Alt+&lt;key&gt;</div></td></tr>
+			</table>
+		  </td>
+		  <td></td>
+		  <td></td>
+		</tr>
+	  </table>
+	</div>
+	<div class="span12">
+	  <div class="keyboard-selector">
+		<form>
+		  Keyboard layout:
+		  <select id="kbd">
+			<option value="us" selected="selected">us - United States</option>
+			<option value="it">it - Italian</option>
+			<option value="sp">sp - Spanish (International sort)</option>
+			<option value="dv">dv - Dvorak</option>
+			<option value="colemak">colemak - Colemak</option>
+		  </select>
+		</form>
+	  </div>
+	  <div class="keyboard">
+	  <table border=0 cellpadding=0 cellspacing=0 class="keyboard-row">
+		<tr>
+		  <td>
+			<div class="key" id="key-1">
+			  <div class="label">&nbsp;<div>
+			  <div class="alt-shift" title="delete-window">close pane</div>
+			  <div class="alt" title="delete-other-windows">expnd pane</div>
+			</div>
+		  </td>
+		  <td>
+			<div class="key" id="key-2">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift" title="split-window-horizontally">split win|</div>
+			  <div class="alt" title="split-window-vertically">split win-</div>
+			</div>
+		  </td>
+		  <td>
+			<div class="key" id="key-3">
+			  <div class="label">&nbsp;</div>
+			</div>
+		  </td>
+		  <td>
+			<div class="key" id="key-4">
+			  <div class="label">&nbsp;</div>
+			</div>
+		  </td>
+		  <td>
+			<div class="key" id="key-5">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift" title="query-replace-regexp">find/rep&nbsp;rex</div>
+			  <div class="alt" title="query-replace">find/rep</div>
+			</div>
+		  </td>
+		  <td>
+			<div class="key" id="key-6">
+			  <div class="label">&nbsp;</div>
+			</div>
+		  </td>
+		  <td>
+			<div class="key" id="key-7">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift" title="dabbrev-expand">↯&nbsp;expand</div>
+			  <div class="alt" title="complete-symbol">↯&nbsp;compl</div>
+			</div>
+		  </td>
+		  <td>
+			<div class="key" id="key-8">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift" title="self-insert-command">insert '['</div>
+			  <div class="alt" title="self-insert-command">insert '{'</div>
+			</div>
+		  </td>
+		  <td>
+			<div class="key" id="key-9">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift" title="self-insert-command">insert ']'</div>
+			  <div class="alt" title="self-insert-command">insert '}'</div>
+			</div>
+		  </td>
+		  <td>
+			<div class="key" id="key-0">
+			  <div class="label">&nbsp;</div>
+			</div>
+		  </td>
+		</tr>
+	  </table>
+	  <table border=0 cellpadding=0 cellspacing=0 class="keyboard-row" style="position:relative;left:15px;">
+		<tr>
+		  <td>
+			<div class="key" id="key-Q">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift">&nbsp;</div>
+			  <div class="alt" title="compact-uncompact-block">fill/unfill&nbsp;¶</div>
+			</div>
+		  </td>
+		  <td>
+			<div class="key" id="key-W">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift">&nbsp;</div>
+			  <div class="alt" title="shrink-whitespaces">⌧&nbsp;white</div>
+			</div>
+		  </td>
+		  <td>
+			<div class="key" id="key-E">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift">&nbsp;</div>
+			  <div class="alt" title="backward-kill-word">⌫&nbsp;word</div>
+			</div>
+		  </td>
+		  <td>
+			<div class="key" id="key-R">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift">&nbsp;</div>
+			  <div class="alt" title="kill-word">⌦&nbsp;word</div>
+			</div>
+		  </td>
+		  <td>
+			<div class="key" id="key-T">
+			  <div class="label">&nbsp;</div>
+			</div>
+		  </td>
+		  <td>
+			<div class="key" id="key-Y">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift" title="isearch-backward">←&nbsp;isearch</div>
+			  <div class="alt" title="isearch-forward">→&nbsp;isearch</div>
+			</div>
+		  </td>
+		  <td>
+			<div class="key" id="key-U">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift" title="beginning-of-defun">←&nbsp;defun</div>
+			  <div class="alt" title="backward-word">←&nbsp;word</div>
+			</div>
+		  </td>
+		  <td class="ikey">
+			<div class="key" id="key-I">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift" title="scroll-down">↑&nbsp;page</div>
+			  <div class="alt" title="previous-line">↑&nbsp;line</div>
+			</div>
+		  </td>
+		  <td>
+			<div class="key" id="key-O">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift" title="end-of-defun">→&nbsp;defun</div>
+			  <div class="alt" title="forward-word">→&nbsp;word</div>
+			</div>
+		  </td>
+		  <td>
+			<div class="key" id="key-P">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift">&nbsp;</div>
+			  <div class="alt" title="recenter">&nbsp;recenter</div>
+			</div>
+		  </td>
+		</tr>
+	  </table>
+	  <table border=0 cellpadding=0 cellspacing=0 class="keyboard-row" style="position:relative;left:30px;">
+		<tr>
+		  <td class="homekey">
+			<div class="key" id="key-A">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift" title="shell-command">shell cmd</div>
+			  <div class="alt">&nbsp;</div>
+			</div>
+		  </td>
+		  <td class="homekey">
+			<div class="key" id="key-S">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift" title="move-cursor-previous-pane">prev&nbsp;pane</div>
+			  <div class="alt" title="move-cursor-next-pane">next&nbsp;pane</div>
+			</div>
+		  </td>
+		  <td class="homekey">
+			<div class="key" id="key-D">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift" title="backward-kill-sexp">⌫&nbsp;sexp</div>
+			  <div class="alt" title="delete-backward-char">⌫&nbsp;char</div>
+			</div>
+		  </td>
+		  <td class="homekey">
+			<div class="key" id="key-F">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift" title="kill-sexp">⌦&nbsp;sexp</div>
+			  <div class="alt" title="delete-char">⌦&nbsp;char</div>
+			</div>
+		  </td>
+		  <td>
+			<div class="key" id="key-G">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift" title="kill-line-backward">⌫&nbsp;line</div>
+			  <div class="alt" title="kill-line">⌦&nbsp;line</div>
+			</div>
+		  </td>
+		  <td>
+			<div class="key" id="key-H">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift" title="ergoprog-beginning-of-line-and-buffer">→&nbsp;line/buf</div>
+			  <div class="alt" title="ergoprog-end-of-line-and-buffer">←&nbsp;line/buf</div>
+			</div>
+		  </td>
+		  <td class="homekey jkey">
+			<div class="key" id="key-J">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift" title="backward-sexp">←&nbsp;sexp</div>
+			  <div class="alt" title="backward-char">←&nbsp;char</div>
+			</div>
+		  </td>
+		  <td class="homekey kkey">
+			<div class="key" id="key-K">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift" title="scroll-up">↓&nbsp;page</div>
+			  <div class="alt" title="next-line">↓&nbsp;line</div>
+			</div>
+		  </td>
+		  <td class="homekey lkey">
+			<div class="key" id="key-L">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift" title="forward-sexp">→&nbsp;sexp</div>
+			  <div class="alt" title="forward-char">→&nbsp;char</div>
+			</div>
+		  </td>
+		  <td class="homekey">
+			<div class="key" id="key-L2">
+			  <div class="label">&nbsp;</div>
+			</div>
+		  </td>
+		</tr>
+	  </table>
+	  <table border=0 cellpadding=0 cellspacing=0 class="keyboard-row" style="position:relative;left:45px;">
+		<tr>
+		  <td>
+			<div class="key" id="key-Z">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift" title="redo">↷&nbsp;redo</div>
+			  <div class="alt" title="undo">↶&nbsp;undo</div>
+			</div>
+		  </td>
+		  <td>
+			<div class="key" id="key-X">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift" title="cut-all">✂&nbsp;all</div>
+			  <div class="alt" title="kill-region">✂&nbsp;region</div>
+			</div>
+		  </td>
+		  <td>
+			<div class="key" id="key-C">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift" title="copy-all">copy&nbsp;all</div>
+			  <div class="alt" title="kill-ring-save">copy&nbsp;region</div>
+			</div>
+		  </td>
+		  <td>
+			<div class="key" id="key-V">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift" title="yank-pop">paste&nbsp;↑</div>
+			  <div class="alt" title="yank">paste</div>
+			</div>
+		  </td>
+		  <td>
+			<div class="key" id="key-B">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift" title="ibuffer">bufs&nbsp;list</div>
+			  <div class="alt" title="switch-to-buffer">switch&nbsp;buf</div>
+			</div>
+		  </td>
+		  <td>
+			<div class="key" id="key-N">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift">&nbsp;</div>
+			  <div class="alt" title="keyboard-quit">cancel</div>
+			</div>
+		  </td>
+		  <td>
+			<div class="key" id="key-M">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift" title="execute-extended-command">M-x</div>
+			  <div class="alt">&lt;prefix&gt;</div>
+			</div>
+		  </td>
+		  <td>
+			<div class="key" id="key-M2">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift" title="comment-dwim">cmt&nbsp;dwim</div>
+			  <div class="alt" title="self-insert-command">insert '&lt;'</div>
+			</div>
+		  </td>
+		  <td>
+			<div class="key" id="key-M3">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift" title="self-insert-command">insert '-&gt;'</div>
+			  <div class="alt" title="self-insert-command">insert '&gt;'</div>
+			</div>
+		  </td>
+		  <td>
+			<div class="key" id="key-M4">
+			  <div class="label">&nbsp;</div>
+			  <div class="alt-shift" title="toggle-camel-case">camel&nbsp;case</div>
+			  <div class="alt" title="toggle-letter-case">toggle&nbsp;case</div>
+			</div>
+		  </td>
+		</tr>
+	  </table>
+	  <table border=0 cellpadding=0 cellspacing=0 class="keyboard-row" style="position:relative;left:60px;">
+		<tr>
+		  <td>
+			<div class="key">
+			  <div class="label">Alt</div>
+			</div>
+		  </td>
+		  <td>
+		    <div class="key key-spacebar">
+			  <div class="label">Space&nbsp;Bar</div>
+			  <div>
+				<div class="alt-shift">✔&nbsp;mark-sexp</div>
+				<div class="alt">✔&nbsp;set-mark-command</div>
+			  </div>
+			</div>
+		  </td>
+		</tr>
+	  </table>
+	  </div>
+
+	  <h2>Alt+M prefix</h2>
+	  <table border=0 class="bindings-ref">
+		<tr><td style="width:200px">Alt+M,&nbsp;S</td><td>save-buffer</td></tr>
+		<tr><td>Alt+M,&nbsp;Alt+S</td><td>save-some-buffers</td></tr>
+		<tr><td>Alt+M,&nbsp;H</td><td>back-to-indentation</td></tr>
+		<tr><td>Alt+M,&nbsp;T</td><td>transpose-chars</td></tr>
+		<tr><td>Alt+M,&nbsp;Alt+T</td><td>transpose-words</td></tr>
+		<tr><td>Alt+M,&nbsp;Alt+Shift+T</td><td>transpose-sexps</td></tr>
+		<tr><td>Alt+M,&nbsp;Alt+Space</td><td>mark-paragraph</td></tr>
+	  </table>
+
+	  <h2>Go to</h2>
+	  <table border=0 class="bindings-ref">
+		<tr><td style="width:200px">Alt+M,&nbsp;F</td><td>find-file</td></tr>
+		<tr><td>Alt+M,&nbsp;Alt+F</td><td>projectile-find-file</td></tr>
+		<tr><td>Alt+M,&nbsp;D</td><td>ido-dired</td></tr>
+		<tr><td>Alt+M,&nbsp;G</td><td>goto-line</td></tr>
+		<tr><td>Alt+M,&nbsp;Alt+G</td><td>grep-find ("Find in Files")</td></tr>
+	  </table>
+
+	  <h2>Macros</h2>
+	  <table border=0 class="bindings-ref">
+		<tr><td style="width:200px">Alt+M,&nbsp;M</td><td>Start/end macro (ergoprog-switch-macro-recording)</td></tr>
+		<tr><td>Alt+M,&nbsp;J</td><td>Edit macro (kmacro-edit-macro-repeat)</td></tr>
+		<tr><td>Alt+M,&nbsp;L</td><td>Call macro (kmacro-end-and-call-macro)</td></tr>
+		<tr><td>Alt+M,&nbsp;Shift+I</td><td>Insert counter (kmacro-insert-counter)</td></tr>
+		<tr><td>Alt+M,&nbsp;Shift+S</td><td>Set counter (kmacro-set-counter)</td></tr>
+	  </table>
+
+	  <h2>Bookmarks</h2>
+	  <table border=0 class="bindings-ref">
+		<tr><td style="width:200px">Alt+M,&nbsp;K</td><td>bookmark-set (K = Down = Set)</td></tr>
+		<tr><td>Alt+M,&nbsp;I</td><td>bookmark-jump (I = Up = Jump)</td></tr>
+		<tr><td>Alt+M,&nbsp;B</td><td>bookmark-bmenu-list (B = Switch Buffer = List Bookmarks)</td></tr>
+	  </table>
+
+	  <h2>Registers</h2>
+	  <table border=0 class="bindings-ref">
+		<tr><td style="width:200px">Alt+M,&nbsp;Alt+K</td><td>point-to-register (K = Down = Point = Put a register here)</td></tr>
+		<tr><td>Alt+M,&nbsp;Alt+I</td><td>jump-to-register (I = Up = Jump)</td></tr>
+		<tr><td>Alt+M,&nbsp;Alt+C</td><td>copy-to-register (C = like Ctrl+C)</td></tr>
+		<tr><td>Alt+M,&nbsp;Alt+V</td><td>insert-register (V = like Ctrl+V)</td></tr>
+		<tr><td>Alt+M,&nbsp;Alt+B</td><td>list-register (B = Switch Buffer = List Registers)</td></tr>
+	  </table>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+---
+layout: post
+title: STL generate
+date: 2008-12-08
+category: cpp
+tags: [cpp, programacion, algoritmo, stl]
+---
+
+<div class='post'>
+Si usted tiene una función que genera números/valores/instancias (ej: un generador de números aleatorios, o identificadores) puede usar el algoritmo <a href="http://www.cplusplus.com/reference/algorithm/generate.html">generate</a> de la <a href="http://www.sgi.com/tech/stl/">STL</a> para crear una secuencia de objetos. Por ejemplo, para generar 100 números (pseudo)aleatorios de 0 a 1:<br />
+<pre class="prettyprint">#include &lt;algorithm&gt;<br />#include &lt;vector&gt;<br /><br />double uniform_random()<br />{<br />  return (rand() % 10001) / 10000.0;<br />}<br /><br />int main()<br />{<br />  std::vector&lt;double&gt; v(100);<br />  std::generate(v.begin(), v.end(), uniform_random);<br />  return 0;<br />}<br /></pre>
+El algoritmo <em>generate</em> recibe dos iteradores (inicio y fin), y llama a la función especificada para cada una de las posiciones que recorre:<br />
+<pre class="prettyprint">template&lt;typename ForwardIterator, typename Generator&gt;<br />void generate(ForwardIterator first, ForwardIterator last,<br />              Generator gen)<br />{<br />  for (; first != last; ++first)<br />    *first = gen();<br />}<br /></pre>
+Los algoritmos de la STL son genéricos porque utilizan la <a href="http://en.wikipedia.org/wiki/Pointer_(computing)#C_and_C.2B.2B">aritmética de punteros</a>. Los iteradores sobrecargan los operadores para poder ser utilizados como punteros. Así un algoritmo puede ser utilizado con los contenedores de la STL (<a href="http://www.sgi.com/tech/stl/Vector.html">vector</a>) o con los viejos y tan queridos arreglos (y punteros) de C:<br />
+<pre class="prettyprint">#include &lt;algorithm&gt;<br /><br />double uniform_random()<br />{<br />  return (rand() % 10001) / 10000.0;<br />}<br /><br />int main()<br />{<br />  double v[100];<br />  std::generate(v, v+100, uniform_random);<br />  return 0;<br />}<br /></pre>
+</div>

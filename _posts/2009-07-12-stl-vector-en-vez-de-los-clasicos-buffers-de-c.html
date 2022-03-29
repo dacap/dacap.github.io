@@ -1,0 +1,11 @@
+---
+layout: post
+title: STL vector en vez de los clásicos buffers de C
+date: 2009-07-12
+category: cpp
+tags: [cpp, programacion, stl, vector, leaks]
+---
+
+<div class='post'>
+Algunas veces tenemos que crear buffers temporales. Por ejemplo, la función <a href="http://www.cplusplus.com/reference/clibrary/cstdio/sprintf/">sprintf</a> necesita de un buffer para poder dejar la cadena resultante. Ejemplo:<br /><pre class="prettyprint">char buf[256];<br />sprintf(buf, "%d", 12345);<br />// usar "buf"...<br /></pre><br />Si queremos mantener el buffer en heap:<br /><pre class="prettyprint">char* buf = malloc(256);<br />sprintf(buf, "%d", 12345);<br />// usar "buf"...<br />free(buf);<br /></pre><br />En C++ podríamos hacer uso de los operadores new[]/delete[]:<br /><pre class="prettyprint">char* buf = new char[256];<br />sprintf(buf, "%d", 12345);<br />// usar "buf"...<br />delete[] buf;<br /></pre><br />Pero es aconsejable evitar la creación de arreglos con new[], y en su lugar hacer uso de <a href="http://www.cplusplus.com/reference/stl/vector/">std::vector</a>:<br /><pre class="prettyprint">std::vector&lt;char&gt; buf(256);<br />sprintf(&amp;buf[0], "%d", 12345);<br />// usar "&amp;buf[0]" en vez de "buf"...<br /></pre><br />El resultado: tenemos un buffer en el heap que se libera automáticamente (~std::vector) al salir del ámbito de la función que lo utiliza.
+</div>

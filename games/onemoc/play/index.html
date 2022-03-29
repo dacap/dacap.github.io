@@ -1,0 +1,54 @@
+<!DOCTYPE>
+<html>
+<head>
+  <title>Onemoc</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1 maximum-scale=1 user-scalable=0" />
+  <style>
+	body {
+		margin: 0;
+		padding: 0;
+		background-color: #000000;
+	}
+	#tweet {
+	text-decoration:none;color:#0e0;position:absolute;font-family:Arial;font-size:20pt;font-weight:bold;
+	padding:4px;
+	}
+	#tweet:hover {
+	background-color:#0e0;
+	color:#000;
+	}
+  </style>
+  <script src="mousetrap.min.js"></script>
+  <script src="tween.min.js"></script>
+  <script src="pixi.js"></script>
+  <script src="hammer.min.js"></script>
+  <script src="soundmanager2-jsmin.js"></script>
+  <meta name="author" content="David Capello">
+  <meta property="og:image" content="../onemoc.png"/>
+  <meta itemprop="image" content="../onemoc.png">
+  <link rel="shortcut icon" href="/images/favicon.ico">
+</head>
+<body>
+  <script src="game.js"></script>
+  <a id="tweet" style="display:none;" target="_blank" href="#">TWEET YOUR SCORE!</a>
+<script>
+soundManager.setup({
+  url: '/games/onemoc/play/swf-files/',
+  onready: function() {
+    function loopSound(sound) {
+      sound.play({
+        onfinish: function() {
+          loopSound(sound);
+        }
+      });
+    }
+    var music = soundManager.createSound({
+      url: 'assets/music.mp3'
+    });
+    loopSound(music);
+  }
+});
+</script>
+</body>
+</html>

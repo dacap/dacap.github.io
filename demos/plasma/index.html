@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <title>Plasma Effect by David Capello</title>
+  <style type="text/css">
+    body {
+      background-color:#fff;
+      margin:0;
+      border:0;
+      padding:0;
+      overflow:hidden;
+    }
+  </style>
+  <script type="text/javascript">
+(function() {
+  function requestAnimationFrameWithSetTimeout(f) {
+    setTimeout(f, 10);
+  }
+  var requestAnimationFrame =
+    window.requestAnimationFrame ||
+    window.mozRequestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||
+    window.msRequestAnimationFrame ||
+    requestAnimationFrameWithSetTimeout;
+  window.requestAnimationFrame = requestAnimationFrame;
+})();
+
+function isLittleEndian() {
+  var buffer = new ArrayBuffer(4);
+  var bytes = new Uint8Array(buffer);
+  var dword = new Uint32Array(buffer);
+  dword[0] = 1;
+  return (bytes[0] === 1);
+}
+
+var rgba;
+if (isLittleEndian()) {
+  rgba = function(r,g,b,a) { return (a << 24) | (b << 16) | (g <<  8) | r; }
+}
+else {
+  rgba = function(r,g,b,a) { return (r << 24) | (g << 16) | (b <<  8) | a; }
+}
+
+function main() {
+  var t = 0;
+  var mainCanvas = document.getElementById('mainCanvas');
+  var mainCtx = mainCanvas.getContext("2d");
+  var spriteCanvas = document.getElementById('spriteCanvas');
+  var spriteCtx = spriteCanvas.getContext('2d');
+  var imageData, buffer, buffer8, buffer32;
+  var paletteBuffer = new ArrayBuffer(256*4);
+  var palette = new Uint32Array(paletteBuffer);
+
+  function magnitude(dx, dy) {
+    return Math.sqrt(dx*dx + dy*dy);
+  }
+
+  function drawFrame(timestamp) {
+    for (var i=0; i<palette.length; i++) {
+      r = 128 + 128 * Math.sin(6*Math.PI * i / palette.length + Math.PI/4*t/30);
+      g = 128 + 128 * Math.sin(4*Math.PI * i / palette.length + Math.PI/4*t/20);
+      b = 128 + 128 * Math.sin(2*Math.PI * i / palette.length + Math.PI/4*t/10);
+      r = (r > 255 ? 255: (r < 0 ? 0: r));
+      g = (g > 255 ? 255: (g < 0 ? 0: g));
+      b = (b > 255 ? 255: (b < 0 ? 0: b));
+      palette[i] = rgba(r, g, b, 255);
+    }
+
+    var w = spriteCanvas.width;
+    var h = spriteCanvas.height;
+
+    var i = 0;
+    for (var y = 0; y < h; ++y) {
+      for (var x = 0; x < w; ++x) {
+        var u = 16 * (x-w/2) / w;
+        var v = 16 * (y-h/2) / w;
+        var z = t/8;
+        var value = 0;
+        value += 0.75*Math.sin(magnitude(u-16, v+16));
+        value += 0.25*Math.sin(magnitude(u+z-32, v-32));
+        value += 0.50*Math.sin(magnitude(u+64, v+z));
+        value += 0.25*Math.sin(z+v);
+        value = 127 + 128 * value;
+        buffer32[i++] = palette[value & 0xff];
+      }
+    }
+
+    if (imageData.data.set) {   // Even IE11 doesn't have PixelData.set()
+      imageData.data.set(buffer8);
+    }
+    else {
+      var data = imageData.data;
+      var len = data.length*4;
+      for (var i=0; i<len; ) {
+        data[i] = buffer8[i]; ++i;
+        data[i] = buffer8[i]; ++i;
+        data[i] = buffer8[i]; ++i;
+        data[i] = buffer8[i]; ++i;
+      }      
+    }
+    spriteCtx.putImageData(imageData, 0, 0);
+
+    // Disable smoothing
+    mainCtx.imageSmoothingEnabled = false;
+    mainCtx.oImageSmoothingEnabled = false;
+    mainCtx.mozImageSmoothingEnabled = false;
+    mainCtx.webkitImageSmoothingEnabled = false;
+    mainCanvas.getContext('2d').drawImage(spriteCanvas, 0, 0,
+      mainCanvas.width, mainCanvas.height);
+
+    t++;
+    requestAnimationFrame(drawFrame);
+  }
+
+  function resizeCanvas() {
+    mainCanvas.width = window.innerWidth;
+    mainCanvas.height = window.innerHeight;
+
+    spriteCanvas.width = mainCanvas.width / 8;
+    spriteCanvas.height = mainCanvas.height / 8;
+
+    imageData = spriteCtx.getImageData(0, 0, spriteCanvas.width, spriteCanvas.height);
+    buffer = new ArrayBuffer(imageData.data.length);
+    buffer8 = new Uint8Array(buffer);
+    buffer32 = new Uint32Array(buffer);
+  }
+
+  window.addEventListener('resize', function(ev) {
+    resizeCanvas();
+  });
+
+  resizeCanvas();
+  requestAnimationFrame(drawFrame);
+}
+</script>
+<meta name="author" content="David Capello">
+<meta property="og:image" content="plasma.png"/>
+<meta itemprop="image" content="plasma.png">
+<link rel="shortcut icon" href="/images/favicon.ico">
+</head>
+<body onload="main()">
+  <canvas id="mainCanvas" width="256" height="256"></canvas>
+  <canvas id="spriteCanvas" width="32" height="32" style="display:none"></canvas>
+</body>
+</html>

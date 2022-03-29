@@ -1,0 +1,29 @@
+---
+layout: default
+schema: Article
+---
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h1>{{ page.title }} <small>{{ page.tagline }}</small></h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    {{ content }}
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <hr>
+    <small>
+      <span>
+        <span class="glyphicon glyphicon-calendar"></span>&nbsp;{{ page.date | date_to_long_string }}</span>
+        | <span class="tag_box">
+        {% assign tags_list = page.tags %}
+        {% include tags_list %}
+      </span>
+    </small>
+  </div>
+</div>

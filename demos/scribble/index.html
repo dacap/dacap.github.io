@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <title>Scribble by David Capello</title>
+  <style type="text/css">
+    body {
+      background-color:#fff;
+      margin:0;
+      border:0;
+      padding:0;
+      overflow:hidden;
+    }
+  </style>
+  <script type="text/javascript">
+function distance(a, b) {
+  var dx = a.x - b.x;
+  var dy = a.y - b.y;
+  return Math.sqrt(dx*dx + dy*dy);
+}
+function main() {
+  var NumPoints = 2; // It's a "const", but IE9 doesn't support "const"
+  var drawing = false;
+  var oldPos = null;
+  var tapPos = null;
+  var firstTapPos = null;
+  var canvas = document.getElementById('mainCanvas');
+  var ctx = canvas.getContext('2d');
+
+  // Our events.
+  canvas.addEventListener('mousedown', onMouseDown);
+  canvas.addEventListener('mouseup', onMouseUp);
+  canvas.addEventListener('mouseout', onMouseUp);
+  canvas.addEventListener('mousemove', onMouseMove);
+  canvas.addEventListener('touchstart', onTouchStart);
+  canvas.addEventListener('touchend', onTouchEnd);
+  canvas.addEventListener('touchmove', onTouchMove);
+  window.addEventListener('keydown', onKeyDown);
+  window.addEventListener('resize', onResize);
+
+  // Prevent default scroll movement.
+  document.body.addEventListener('touchmove', function(ev) { ev.preventDefault(); });
+
+  // Resize the canvas to the current window size.
+  resizeCanvas();
+
+  // Print the initial help.
+  ctx.fillText('Paint: left mouse button or touch the screen', 8, 16);
+  ctx.fillText('Erase background: ESC key or three fingers on screen', 8, 32);
+  ctx.fillText('Save canvas: Ctrl+S or double tap the screen', 8, 48);
+
+  function clearDrawing() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  function saveDrawing() {
+    // We open a new window with a URL pointing to the whole canvas
+    // image data in PNG format.
+    window.open(canvas.toDataURL('png'), "");
+  }
+
+  function startStroke(pos) {
+    oldPos = new Array(NumPoints);
+    for (var i=0; i<NumPoints; ++i)
+      oldPos[i] = pos;
+  }
+
+  function endStroke() {
+    oldPos = null;
+  }
+
+  function continueStroke(pos) {
+    ctx.save();
+    ctx.beginPath();
+
+    ctx.moveTo(pos.x, pos.y);
+    for (var i=NumPoints-1; i>=0; --i) {
+      ctx.lineTo(oldPos[i].x, oldPos[i].y);
+    }
+    ctx.closePath();
+    ctx.fillStyle = 'rgb(0,0,0)';
+    ctx.fill();
+    ctx.lineWidth = 0.5;
+    ctx.strokeStyle = 'rgb(0,0,0)';
+    ctx.stroke();
+    ctx.restore();
+
+    for (var i=0; i<NumPoints-1; ++i)
+      oldPos[i] = oldPos[i+1];
+    oldPos[NumPoints-1] = pos;
+  }
+
+  function resizeCanvas() {
+    var canvasCopy = document.createElement('canvas');
+    canvasCopy.width = canvas.width;
+    canvasCopy.height = canvas.height;
+    canvasCopy.getContext('2d').drawImage(canvas, 0, 0);
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight-8;
+    ctx.drawImage(canvasCopy, 0, 0);
+  }
+
+  // Mouse events
+
+  function onMouseDown(ev){
+    startStroke({ x:ev.clientX, y:ev.clientY });
+  }
+
+  function onMouseUp(ev){
+    endStroke();
+  }
+
+  function onMouseMove(ev){
+    if (oldPos == null)
+      return;
+    
+    continueStroke({ x:ev.clientX, y:ev.clientY });
+  }
+
+  // Touch events
+
+  function onTouchStart(ev) {
+    if (ev.targetTouches.length == 1) {
+      var touch = ev.targetTouches[0];
+      startStroke(tapPos = { x:touch.clientX, y:touch.clientY });
+    }
+    else if (ev.targetTouches.length == 3) {
+      clearDrawing();
+      tapPos = null;
+    }
+  }
+
+  function onTouchEnd(ev) {
+    endStroke();
+
+    if (tapPos != null && ev.targetTouches.length == 0) {
+      var pos = { x:ev.changedTouches[0].clientX,
+                  y:ev.changedTouches[0].clientY };
+
+      if (firstTapPos != null && distance(firstTapPos, tapPos) < 16) {
+        saveDrawing();
+      }
+      else {
+        firstTapPos = tapPos;
+      }
+    }
+    else {
+      firstTapPos = null;
+    }
+  }
+
+  function onTouchMove(ev) {
+    if (ev.targetTouches.length == 1) {
+      var touch = ev.targetTouches[0];
+      var pos = { x:touch.clientX, y:touch.clientY };
+      continueStroke(pos);
+
+      if (tapPos != null && distance(pos, tapPos) >= 16) {
+        tapPos = null;
+      }
+    }
+  }
+
+  // Window events
+
+  function onKeyDown(ev) {
+    // When the user presses the ESC key
+    if (ev.keyCode == 27) {
+      clearDrawing();
+    }
+    // When the user pressed Ctrl+S
+    else if (ev.keyCode  == 83 && ev.ctrlKey) {
+      saveDrawing();
+    }
+  }
+
+  function onResize(ev) {
+    resizeCanvas();
+  }
+}
+</script>
+<meta name="author" content="David Capello">
+<meta property="og:image" content="scribble.png"/>
+<meta itemprop="image" content="scribble.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<link rel="shortcut icon" href="/images/favicon.ico">
+</head>
+<body onload="main()">
+  <canvas id="mainCanvas" width="256" height="256"></canvas>
+</body>
+</html>
