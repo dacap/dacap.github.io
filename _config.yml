@@ -1,7 +1,7 @@
 permalink: /blog/:categories/:title/
 relative_permalinks: false
 
-exclude: []
+exclude: ["README.md","CNAME"]
 include: []
 safe: false
 pygments: true
