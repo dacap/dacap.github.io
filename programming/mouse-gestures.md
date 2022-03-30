@@ -2,6 +2,10 @@
 layout: page
 title: Mouse Gestures
 permalink: /programming/mouse-gestures/
+redirect_from:
+  - /mouse-gestures/
+  - /mousegesture/
+  - /mousegestures/
 ---
 
 <img class="img-responsive" src="screenshot0.png" alt="Screenshot" />

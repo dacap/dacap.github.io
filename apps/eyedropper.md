@@ -2,6 +2,8 @@
 layout: page
 title: EyeDropper
 permalink: /apps/eyedropper/
+redirect_from:
+  - /eyedropper/
 ---
 
 <img class="img-responsive" src="/images/eyedropper.gif" alt="">

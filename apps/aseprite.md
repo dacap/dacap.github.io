@@ -2,6 +2,9 @@
 layout: page
 title: Aseprite
 permalink: /apps/aseprite/
+redirect_from:
+  - /ase/
+  - /aseprite/
 ---
 
 <img class="img-responsive" src="/images/aseprite.png" alt="">

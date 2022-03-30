@@ -2,6 +2,10 @@
 layout: page
 title: Donkey Bolonkey
 permalink: /games/donkey-bolonkey/
+redirect_from:
+  - /dkbk/
+  - /donkey-bolonkey/
+  - /donkeybolonkey/
 ---
 
 <img class="img-responsive" src="screenshot0.png" alt="Screenshot" />

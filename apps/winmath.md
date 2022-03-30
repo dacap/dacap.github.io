@@ -2,6 +2,8 @@
 layout: page
 title: WinMath
 permalink: /apps/winmath/
+redirect_from:
+  - /winmath/
 ---
 
 <img class="img-responsive" src="screenshot0.png" alt="Screenshot" />

@@ -2,6 +2,8 @@
 layout: page
 title: HTMLEX
 permalink: /programming/htmlex/
+redirect_from:
+  - /htmlex/
 ---
 
 An old experiment which was converted in a fully functional

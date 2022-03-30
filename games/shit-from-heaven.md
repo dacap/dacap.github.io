@@ -2,6 +2,10 @@
 layout: page
 title: Shit From Heaven
 permalink: /games/shit-from-heaven/
+redirect_from:
+  - /sfh/
+  - /shit-from-heaven/
+  - /shitfromheaven/
 ---
 
 <img class="img-responsive" src="screenshot0.png" alt="Screenshot" />

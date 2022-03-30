@@ -2,6 +2,8 @@
 layout: page
 title: Visual Application Components Abstraction
 permalink: /programming/vaca/
+redirect_from:
+  - /vaca/
 ---
 
 An experimental library to program applications on Windows with C++.

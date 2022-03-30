@@ -2,6 +2,10 @@
 layout: page
 title: Defender of Nothing
 permalink: /games/defender-of-nothing/
+redirect_from:
+  - /defender-of-nothing/
+  - /defenderofnothing/
+  - /defnot/
 ---
 
 <img class="img-responsive" src="screenshot0.png" alt="Screenshot" />

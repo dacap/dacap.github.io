@@ -2,6 +2,8 @@
 layout: page
 title: Hashing
 permalink: /apps/hashing/
+redirect_from:
+  - /hashing/
 ---
 
 Little portable tool to calculate MD5 and SHA1

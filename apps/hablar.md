@@ -2,6 +2,8 @@
 layout: page
 title: HABLAR
 permalink: /apps/hablar/
+redirect_from:
+  - /hablar/
 ---
 
 <img class="img-responsive" src="screenshot0.png" alt="Screenshot" />

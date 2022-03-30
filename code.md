@@ -3,6 +3,12 @@ layout: page
 title: Code
 group: navigation
 permalink: /code/
+redirect_from:
+  - /apps/
+  - /demos/
+  - /games/
+  - /programming/
+  - /tools/
 ---
 
 ## Applications

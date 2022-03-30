@@ -2,6 +2,8 @@
 layout: page
 title: Zile
 permalink: /programming/zile/
+redirect_from:
+  - /zile/
 ---
 
 A long time ago, in the years where I used GNU/Linux, I could not

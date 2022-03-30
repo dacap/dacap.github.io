@@ -2,6 +2,8 @@
 layout: page
 title: ErgoEmacs
 permalink: /programming/ergoemacs/
+redirect_from:
+  - /ergoemacs/
 ---
 
 A project developed by [Xah Lee](http://xahlee.org). A crazy guy

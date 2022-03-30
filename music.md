@@ -3,6 +3,12 @@ layout: page
 title: Music
 group: navigation
 permalink: /music/
+redirect_from:
+  - /de-la-galera/
+  - /delagalera/
+  - /improvisaciones/
+  - /musics/
+  - /sobras/
 ---
 
 <iframe width="100%" height="400px" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Fusers%2F2140142">

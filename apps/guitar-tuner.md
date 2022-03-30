@@ -2,6 +2,10 @@
 layout: page
 title: Guitar Tuner
 permalink: /apps/guitar-tuner/
+redirect_from:
+  - /guitar-tuner/
+  - /guitartm/
+  - /guitartuner/
 ---
 
 <img class="img-responsive" src="screenshot0.png" alt="Screenshot" />

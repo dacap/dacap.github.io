@@ -2,6 +2,8 @@
 layout: page
 title: Translate2
 permalink: /apps/translate2/
+redirect_from:
+  - /translate2/
 ---
 
 Un programa para Windows que traduce palabras de inglés al español y vice-versa.

@@ -2,6 +2,9 @@
 layout: page
 title: Pathfinding with A*
 permalink: /demos/pathfinding/
+redirect_from:
+  - /pathfinding/
+  - /pathfind/
 ---
 
 <style>

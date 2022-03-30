@@ -2,6 +2,8 @@
 layout: page
 title: Sudoku
 permalink: /games/sudoku/
+redirect_from:
+  - /sudoku/
 ---
 
 <img class="img-responsive" src="screenshot0.png" alt="Screenshot" />
