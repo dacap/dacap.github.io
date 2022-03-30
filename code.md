@@ -30,9 +30,6 @@ permalink: /code/
 * [Shit From Heaven](/games/shit-from-heaven/) (2002) - First-bird shooter
 * [Donkey Bolonkey](/games/donkey-bolonkey/) (2001) - Rat Poker clone (gather together donkeys of the same color)
 * [Tetris Queen](/games/tetris-queen/) (1999) - Tetris clone
-* *Musics*:
-  * [Pedro's Robot Factory](/music/#pedros-robot-factory-la-fbrica-de-robots-de-pedro-2008) (2008)
-  * [Twisted Zombie](/music/#twisted-zombie-zombi-retorcido-2007) (2007)
 
 ## Programming
 
