@@ -67,10 +67,13 @@ samp {
 }
 
 @media (min-width: 768px) {
- .navbar-nav {
+ .navbar-menu {
   margin-left: 20%;
   margin-top: 32px;
   margin-right: 20%;
+ }
+ .navbar-right {
+  margin-top: 32px;
  }
 }
 @media (max-width: 767px) {
@@ -81,6 +84,9 @@ samp {
   border: none;
   top: 60px;
   position: relative;
+ }
+ .navbar-right > li {
+  float: left;
  }
 }
 
