@@ -4,6 +4,8 @@ title: Onemoc
 permalink: /games/onemoc/
 schema: WebPage
 schema_image: onemoc.png
+redirect_from:
+  - /onemoc/
 ---
 
 One Minute Of Colors: [Play Here](/games/onemoc/play/)

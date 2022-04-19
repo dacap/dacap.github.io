@@ -2,6 +2,8 @@
 layout: page
 title: Housefly
 permalink: /games/housefly/
+redirect_from:
+  - /housefly/
 ---
 
 New HTML5 version available on itch.io:
