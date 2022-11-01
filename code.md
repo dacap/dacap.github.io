@@ -13,7 +13,7 @@ redirect_from:
 
 ## Applications
 
-* [Aseprite](/apps/aseprite/) (2001-2021) - Multiplatforms animated sprite editor (Windows/macOS/Linux)
+* [Aseprite](/apps/aseprite/) (2001-2022) - Multiplatforms animated sprite editor (Windows/macOS/Linux)
 * [EyeDropper](/apps/eyedropper/) (2005-2018) - Picks colors from the screen
 * [Hashing](/apps/hashing/) (2005-2014) - MD5 and SHA1 calculator
 * [Guitar Tuner](/apps/guitar-tuner/) (2005) - Guitar tuner + metronome
