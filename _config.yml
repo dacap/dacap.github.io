@@ -19,6 +19,7 @@ author:
 
 production_url: https://davidcapello.com
 files_url: https://github.com/dacap/dacap.github.io/releases/download/files
+forum_url: https://github.com/dacap/dacap.github.io/discussions
 archive_path: /blog/
 categories_path: /categories/
 tags_path: /tags/
