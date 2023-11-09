@@ -22,8 +22,8 @@ rate than a regular human being.
 
 ## What is a *personal website*?
 
-It's like your Facebook profile, but you have to pay the servers to be
-ignored by the humanity.
+It's like your Facebook profile, but ~~you~~ [GitHub](https://github.com/dacap/dacap.github.io)
+has to pay the servers to be ignored by the humanity.
 
 ## What do you do?
 
