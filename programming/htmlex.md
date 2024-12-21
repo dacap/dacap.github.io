@@ -37,4 +37,4 @@ etc. Here an example:
 
 This is an open source project located in github:
 
- * [Github website](http://github.com/dacap/htmlex/)
+ * [GitHub website](http://github.com/dacap/htmlex/)

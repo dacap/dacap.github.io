@@ -10,7 +10,7 @@ An experimental library to program applications on Windows with C++.
 Basically it's a wrapper of several Windows API functions
 to create windows, controls, drawing primitives, etc.
 
- * [Github website](http://github.com/dacap/vaca)
+ * [GitHub website](http://github.com/dacap/vaca)
  * [Examples](https://github.com/dacap/vaca/wiki/Examples)
 
 ## API Example
